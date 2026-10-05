@@ -266,6 +266,26 @@ nav      { animation: fadeUp .8s ease both; }
   .hero { height: 85vh; }
   .cards { grid-template-columns: 1fr; }
 }
+/* ===== إصلاح التداخل ===== */
+.glass > * { flex-shrink: 0; }
+
+/* ===== إصلاح الجوال ===== */
+@media (max-width: 700px) {
+  .glass { background: rgba(20, 20, 20, 0.6); }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 16px;
+    padding: 3vh 0;
+  }
+  .image { height: 38vh; flex: none; }
+
+  .products { padding: 5vh 0 2vh; }
+  .card { padding: 16px; }
+  .card img { aspect-ratio: 16 / 10; }
+}
 </style>
 </head>
 <body>
