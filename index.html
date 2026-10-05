@@ -4,7 +4,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ADIDAS | GAZA</title>
+<head><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"></head>
 <style>
+  /* ===== الخط الجديد ===== */
+html, body { font-family: 'Poppins', Arial, sans-serif; }
+.text h1 { font-weight: 800; }
+.text p { margin-bottom: 24px; }
+
+/* ===== زر Shop Now ===== */
+.btn {
+  display: inline-block;
+  padding: 14px 34px;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: transform .25s, box-shadow .25s;
+}
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+}
+.btn:active { transform: scale(0.97); }
+
+/* ===== حركة الحذاء ===== */
+.image img {
+  animation: float 4s ease-in-out infinite;
+  transition: rotate .5s ease, scale .5s ease;
+  filter: drop-shadow(0 20px 18px rgba(0, 0, 0, 0.45));
+}
+.image:hover img { rotate: -8deg; scale: 1.08; }
+
+.image::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 4%;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+  filter: blur(10px);
+  animation: shadow 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+@keyframes shadow {
+  0%, 100% { transform: scaleX(1);  opacity: .35; }
+  50%      { transform: scaleX(.8); opacity: .2; }
+}
+
+/* ===== الظهور التدريجي ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+nav      { animation: fadeUp .8s ease both; }
+.text h1 { animation: fadeUp .8s ease .2s both; }
+.text p  { animation: fadeUp .8s ease .4s both; }
+.btn     { animation: fadeUp .8s ease .6s both; }
+.image   { animation: fadeUp 1s ease .5s both; }
+
+/* ===== الجوال ===== */
+@media (max-width: 700px) {
+  .text p { margin-bottom: 14px; }
+  .btn { padding: 11px 28px; font-size: 14px; }
+}
+
+/* لمن يفضّل بدون حركة */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; background: #000; font-family: Arial, sans-serif; color: #fff; overflow: hidden; }
 
@@ -129,6 +207,65 @@
     .text h1 { font-size: 22px; margin-bottom: 6px; }
     .text p { font-size: 11px; }
   }
+  /* ===== اللون المميز (6) ===== */
+:root { --accent: #ff3b3b; --accent-glow: rgba(255, 59, 59, 0.45); }
+.accent { color: var(--accent); }
+
+/* ===== شعاع الضوء خلف الحذاء (5) ===== */
+.image::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
+  filter: blur(30px);
+  animation: pulse 4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: .7; transform: scale(1); }
+  50%      { opacity: 1;  transform: scale(1.1); }
+}
+
+/* ===== تأثير الماوس (8) ===== */
+.circle { translate: calc(var(--mx, 0) * 25px) calc(var(--my, 0) * 25px); transition: translate .3s ease-out; }
+.image  { translate: calc(var(--mx, 0) * -22px) calc(var(--my, 0) * -22px); transition: translate .3s ease-out; }
+
+/* ===== الأقسام تحت الصفحة (7) ===== */
+.glass { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.3) transparent; }
+.hero { flex: none; height: 62vh; }
+
+.products { padding: 6vh 0 2vh; }
+.products h2 { font-size: clamp(22px, 3vw, 34px); font-weight: 800; margin-bottom: 24px; text-transform: uppercase; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.card {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  transition: transform .3s, box-shadow .3s;
+}
+.card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); }
+.card img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; margin-bottom: 12px; }
+.card h3 { font-size: 18px; margin-bottom: 4px; }
+.price { color: var(--accent); font-weight: 600; font-size: 18px; margin-bottom: 14px; }
+
+.buy {
+  display: inline-block;
+  padding: 10px 26px;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .25s, box-shadow .25s;
+}
+.buy:hover { transform: scale(1.06); box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+
+@media (max-width: 700px) {
+  .hero { height: 85vh; }
+  .cards { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -146,12 +283,36 @@
     </nav>
 
     <section class="hero">
+      <section class="products">
+  <h2>Our Products</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="p/shoe.png" alt="Product 1">
+      <h3>Classic Runner</h3>
+      <p class="price">$120</p>
+      <a href="#" class="buy">Buy Now</a>
+    </div>
+    <div class="card">
+      <img src="p/shoe.png" alt="Product 2">
+      <h3>Street Pro</h3>
+      <p class="price">$150</p>
+      <a href="#" class="buy">Buy Now</a>
+    </div>
+    <div class="card">
+      <img src="p/shoe.png" alt="Product 3">
+      <h3>Speed Max</h3>
+      <p class="price">$180</p>
+      <a href="#" class="buy">Buy Now</a>
+    </div>
+  </div>
+</section>
       <div class="text">
         <h2>Adidas company is the best</h2>
         <p>Adidas is one of the best and finest footwear and sportswear companies; it is undoubtedly the best.</p>
+        <a href="#" class="btn">Shop Now</a>
       </div>
       <div class="image">
-        <img src="p/shoe.png" alt="">
+        <img src="p/shoe.png" alt="حذاء أديداس">
       </div>
     </section>
   </div>
